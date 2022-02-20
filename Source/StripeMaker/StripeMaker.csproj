@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\Stripe.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyTitle>Stripe Maker</AssemblyTitle>
+    <Version>1.0.0</Version>
+    <Authors>emoacht</Authors>
+    <Product>Stripe Maker</Product>
+    <Copyright>Copyright © 2022 emoacht</Copyright>
+  </PropertyGroup>
+
+  <Import Project="..\StripeMaker.Shared\StripeMaker.Shared.projitems" Label="Shared" />
+
+</Project>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5437ee5e-199c-41a6-9493-c05a2fd97564</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>StripeMaker.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ProductService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SystemMenuExtender.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\AngleConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\LengthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\PathConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\PathPoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\RectConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
