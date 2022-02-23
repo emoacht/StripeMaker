@@ -10,6 +10,16 @@ Stripe Maker is a design tool to create the tile visuals for striped background.
  * Windows 10 or newer
  * .NET Framework 4.8
 
+## Download
+
+### Microsoft Store version
+
+<a href='//www.microsoft.com/store/apps/9nv83vmn99tr?cid=storebadge&ocid=badge'><img src='https://developer.microsoft.com/store/badges/images/English_get-it-from-MS.png' alt='Hash Pad' width='142px' height='52px'/></a>
+
+### Standard version
+
+:floppy_disk: <a href="https://github.com/emoacht/StripeMaker/releases/latest">Latest release</a>
+
 ## Usage
 
 The visuals for stripes can be defined by 3 elements:
