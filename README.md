@@ -32,7 +32,7 @@ You can adjust the offset (top slider), width (bottom slider) and height (left s
 
 https://user-images.githubusercontent.com/7205690/154844707-3e3a8384-3891-474c-8226-a7513784ad4d.mp4
 
-Once you get a satisfactory combination of elements, you can copy its path data in [Path Markup Syntax](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/graphics-multimedia/path-markup-syntax) for XAML. Let's say you want to fill an area of 300x240 with rotationally symmetric stripes and adjust elements as shown below. 
+Once you get a satisfactory combination of elements, you can copy its path data usable for XAML and SVG. Let's say you want to fill an area of 300x240 with rotationally symmetric stripes and adjust elements as shown below. 
 
 ![Screenshot](Images/StripeMaker-4a.png)
 
@@ -42,7 +42,11 @@ The path data would be something like below.
 M 0,0 L 65.88,79.76 L 65.88,36.55 L 35.69,0 z M 0,79.76 L 35.69,79.76 L 0,36.55 z
 ```
 
- You can use this data for `VisualBrush` to fill the background of a window. Set this data to `Data` property of `Path` for VisualBrush's `Visual` property and make the width and height of VisualBrush's `Viewport` property to match those of this data.
+This is in [Path Markup Syntax](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/graphics-multimedia/path-markup-syntax) for XAML and it works for SVG as well.
+
+### For XAML
+
+You can use this data for `VisualBrush` to fill the background of a window. Set this data to `Data` property of `Path` for VisualBrush's `Visual` property and make the width and height of VisualBrush's `Viewport` property to match those of this data.
 
 ```xml
 <Window x:Class="WpfApp.MainWindow"
@@ -67,7 +71,26 @@ Then this window will look like as follows:
 
 ![Screenshot](Images/StripeMaker-4b.png)
 
-In fact, this data merely represents a series of coordinates that draw two simple shapes as described below.
+### For SVG
+
+You can use this data for `pattern` to fill `rect`.
+
+```xml
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="stripe"
+             width="65.88" height="79.76" patternUnits="userSpaceOnUse">
+      <path d="M 0,0 L 65.88,79.76 L 65.88,36.55 L 35.69,0 z M 0,79.76 L 35.69,79.76 L 0,36.55 z"
+            fill="skyblue"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#stripe)"/>
+</svg>
+```
+
+This SVG will produce the same background as shown above.
+
+FYI, each pair of numbers delimited by a comma (In fact, it can be a space.) represents (x,y) coordinates and this data draws two simple shapes as described below.
 
 | Command                               | Description                                                |
 |---------------------------------------|------------------------------------------------------------|
@@ -78,7 +101,7 @@ In fact, this data merely represents a series of coordinates that draw two simpl
 | L 35.69,79.76 L 0,36.55               | Draw line to (35.69,79.76), to (0,36.55)                   |
 | z                                     | Close drawing                                              |
 
-You can utilize this data in other ways. Additionally, in Microsoft Store version, you can save the tile image to a file in PNG format.
+Additionally, in Microsoft Store version, you can save the tile image to a file in PNG format.
 
 ## Histroy
 
