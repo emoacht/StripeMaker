@@ -105,6 +105,10 @@ Additionally, in Microsoft Store version, you can save the tile image to a file 
 
 ## Histroy
 
+v1.1 2022-3-27
+
+ - Enable to directly change angle
+
 v1.0 2022-2-20
 
  - Initial release
