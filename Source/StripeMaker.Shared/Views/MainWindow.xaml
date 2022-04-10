@@ -55,6 +55,10 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
+
+		<Style TargetType="{x:Type Slider}">
+			<Setter Property="controls:RangeValue.IsWheelEnabled" Value="True"/>
+		</Style>
 	</Window.Resources>
 
 	<Grid>
@@ -89,7 +93,7 @@
 
 			<Slider Grid.Column="1" Grid.Row="2"
 					x:Name="WidthSlider"
-					Margin="20,0"
+					Margin="20,0,20,2"
 					Focusable="False"
 					Minimum="0" Maximum="200"
 					Value="100"/>

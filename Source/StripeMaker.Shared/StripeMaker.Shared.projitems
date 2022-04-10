@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Models\ProductService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Controls\Dial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Controls\RangeValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Controls\TextPadding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SystemMenuExtender.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Converters\AngleConverter.cs" />
