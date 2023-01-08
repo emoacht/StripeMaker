@@ -9,7 +9,7 @@
     <ApplicationIcon>Resources\Stripe.ico</ApplicationIcon>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyTitle>Stripe Maker</AssemblyTitle>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
     <Authors>emoacht</Authors>
     <Product>Stripe Maker</Product>
     <Copyright>Copyright © 2022 emoacht</Copyright>

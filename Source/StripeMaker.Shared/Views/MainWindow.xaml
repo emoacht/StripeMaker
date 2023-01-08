@@ -59,6 +59,52 @@
 		<Style TargetType="{x:Type Slider}">
 			<Setter Property="controls:RangeValue.IsWheelEnabled" Value="True"/>
 		</Style>
+
+		<SolidColorBrush x:Key="SliderThumb.Static.Border" Color="#FFACACAC"/>
+		<SolidColorBrush x:Key="SliderThumb.Static.Background" Color="#FFF0F0F0"/>
+		<SolidColorBrush x:Key="SliderThumb.MouseOver.Border" Color="#FF7Eb4EA"/>
+		<SolidColorBrush x:Key="SliderThumb.MouseOver.Background" Color="#FFDCECFC"/>
+		<SolidColorBrush x:Key="SliderThumb.Pressed.Border" Color="#FF569DE5"/>
+		<SolidColorBrush x:Key="SliderThumb.Pressed.Background" Color="#FFDAECFC"/>
+
+		<Style x:Key="DirectionButtonStyle" TargetType="{x:Type ToggleButton}">
+			<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BorderBrush" Value="{StaticResource SliderThumb.Static.Border}"/>
+			<Setter Property="Background" Value="{StaticResource SliderThumb.Static.Background}"/>
+			<Setter Property="Padding" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type ToggleButton}">
+						<Grid Background="Transparent">
+							<Polygon x:Name="triangle"
+									 Margin="{TemplateBinding Padding}"
+									 HorizontalAlignment="Center" VerticalAlignment="Center"
+									 Points="0,0 0,2 1.732,1"
+									 Stretch="Uniform"
+									 StrokeThickness="{TemplateBinding BorderThickness}"
+									 Stroke="{TemplateBinding BorderBrush}"
+									 Fill="{TemplateBinding Background}"
+									 SnapsToDevicePixels="True"
+									 Focusable="False"/>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="triangle" Property="Stroke" Value="{StaticResource SliderThumb.MouseOver.Border}"/>
+								<Setter TargetName="triangle" Property="Fill" Value="{StaticResource SliderThumb.MouseOver.Background}"/>
+							</Trigger>
+							<Trigger Property="IsPressed" Value="True">
+								<Setter TargetName="triangle" Property="Stroke" Value="{StaticResource SliderThumb.Pressed.Border}"/>
+								<Setter TargetName="triangle" Property="Fill" Value="{StaticResource SliderThumb.Pressed.Background}"/>
+							</Trigger>
+							<Trigger Property="IsChecked" Value="False">
+								<Setter TargetName="triangle" Property="Points" Value="1.732,0 1.732,2 0,1"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 	</Window.Resources>
 
 	<Grid>
@@ -291,6 +337,12 @@
 							   Text="{Binding ElementName=OuterBox, Path=Height, Mode=OneWay, StringFormat={}{0:f0}}"/>
 				</Grid>
 			</Grid>
+
+			<!-- Direction -->
+			<ToggleButton Grid.Column="0" Grid.Row="0"
+						  Style="{StaticResource DirectionButtonStyle}"
+						  Width="22" Height="22" Margin="4,4,0,0"
+						  IsChecked="{Binding ElementName=WindowRoot, Path=IsBackward, Mode=TwoWay}"/>
 
 			<!-- Angle -->
 			<controls:Dial Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="2"
