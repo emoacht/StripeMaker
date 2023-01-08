@@ -30,7 +30,7 @@ The visuals for stripes can be defined by 3 elements:
 
 You can adjust the offset (top slider), width (bottom slider) and height (left slider) to change the angle, thickness and distance of stripes. The change will be instantly reflected to preview area. In Microsoft Store version, you can change and swap colors, and change direction.
 
-https://user-images.githubusercontent.com/7205690/154844707-3e3a8384-3891-474c-8226-a7513784ad4d.mp4
+https://user-images.githubusercontent.com/7205690/211199362-e927ae0b-4f58-48fe-89a3-d2385f3edd6d.mp4
 
 Once you get a satisfactory combination of elements, you can copy its path data usable for XAML and SVG. Let's say you want to fill an area of 300x240 with rotationally symmetric stripes and adjust elements as shown below. 
 
@@ -104,6 +104,10 @@ FYI, each pair of numbers delimited by a comma (In fact, it can be a space.) rep
 Additionally, in Microsoft Store version, you can save the tile image to a file in PNG format.
 
 ## Histroy
+
+v1.2 2023-1-8
+
+ - Enable to change direction
 
 v1.1 2022-3-27
 
