@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 using StripeMaker.Models;
 
@@ -53,8 +56,8 @@ namespace StripeMaker.Views
 
 		internal async Task CopyAsync()
 		{
-			var pathDataString = this.StripePath.Data.ToString();
-			if (string.IsNullOrEmpty(pathDataString))
+			var dataString = GetPathData().dataString;
+			if (string.IsNullOrEmpty(dataString))
 				return;
 
 			try
@@ -63,13 +66,38 @@ namespace StripeMaker.Views
 
 				await Task.Delay(TimeSpan.FromSeconds(0.1));
 
-				Clipboard.SetText(InsertSpaces(pathDataString));
+				Clipboard.SetText(dataString);
 
 				SystemSounds.Asterisk.Play();
 			}
 			catch
 			{
 				SystemSounds.Exclamation.Play();
+			}
+		}
+
+		internal (string? dataString, Point[]? dataPoints) GetPathData()
+		{
+			var dataString = this.StripePath.Data.ToString();
+			if (string.IsNullOrEmpty(dataString))
+				return (null, null);
+
+			var dataPoints = Enumerate(this.StripePath.Data).ToArray();
+
+			return (InsertSpaces(dataString), dataPoints);
+
+			static IEnumerable<Point> Enumerate(Geometry geometry)
+			{
+				if (geometry is not PathGeometry pathGeometry)
+					yield break;
+
+				foreach (var pathFigure in pathGeometry.Figures.OfType<PathFigure>())
+				{
+					yield return pathFigure.StartPoint;
+
+					foreach (var lineSegment in pathFigure.Segments.OfType<LineSegment>())
+						yield return lineSegment.Point;
+				}
 			}
 
 			static string InsertSpaces(string source)

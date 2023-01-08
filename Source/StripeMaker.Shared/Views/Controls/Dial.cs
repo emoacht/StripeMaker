@@ -6,8 +6,8 @@ using System.Windows.Media;
 
 namespace StripeMaker.Views.Controls
 {
-	[TemplatePart(Name = "PART_Dial", Type = typeof(FrameworkElement))]
-	[TemplatePart(Name = "PART_Rotation", Type = typeof(RotateTransform))]
+	[TemplatePart(Name = nameof(PART_Dial), Type = typeof(FrameworkElement))]
+	[TemplatePart(Name = nameof(PART_Rotation), Type = typeof(RotateTransform))]
 	public class Dial : ContentControl
 	{
 		#region Property
@@ -27,7 +27,7 @@ namespace StripeMaker.Views.Controls
 					(d, e) =>
 					{
 						var instance = (Dial)d;
-						if (instance._rotation is RotateTransform rotation)
+						if (instance.PART_Rotation is RotateTransform rotation)
 							rotation.Angle = (double)e.NewValue;
 
 						instance.OnAngleChanged((double)e.OldValue, (double)e.NewValue);
@@ -137,27 +137,27 @@ namespace StripeMaker.Views.Controls
 
 		#endregion
 
-		private FrameworkElement? _dial;
-		private RotateTransform? _rotation;
+		private FrameworkElement? PART_Dial;
+		private RotateTransform? PART_Rotation;
 
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
 
-			_dial = this.GetTemplateChild("PART_Dial") as FrameworkElement;
-			_rotation = this.GetTemplateChild("PART_Rotation") as RotateTransform;
+			PART_Dial = this.GetTemplateChild("PART_Dial") as FrameworkElement;
+			PART_Rotation = this.GetTemplateChild("PART_Rotation") as RotateTransform;
 
-			if (_dial is not null)
+			if (PART_Dial is not null)
 			{
-				_dial.MouseDown += OnDialMouseDown;
-				_dial.MouseMove += OnDialMouseMove;
-				_dial.MouseUp += OnDialMouseLeave;
-				_dial.MouseLeave += OnDialMouseLeave;
-				_dial.MouseWheel += OnDialMouseWheel;
+				PART_Dial.MouseDown += OnDialMouseDown;
+				PART_Dial.MouseMove += OnDialMouseMove;
+				PART_Dial.MouseUp += OnDialMouseLeave;
+				PART_Dial.MouseLeave += OnDialMouseLeave;
+				PART_Dial.MouseWheel += OnDialMouseWheel;
 			}
 
-			if (_rotation is not null)
-				_rotation.Angle = Angle;
+			if (PART_Rotation is not null)
+				PART_Rotation.Angle = Angle;
 		}
 
 		private bool _isMoving;
@@ -197,7 +197,7 @@ namespace StripeMaker.Views.Controls
 			{
 				var center = new Point(element.ActualWidth / 2D, element.ActualHeight / 2D);
 				var position = e.GetPosition(element);
-				return new Vector(position.X - center.X, position.Y - center.Y);
+				return (position - center);
 			}
 		}
 	}
